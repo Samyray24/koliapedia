@@ -10,6 +10,7 @@ interface NavbarProps {
   soundEnabled: boolean;
   setSoundEnabled: (enabled: boolean) => void;
   onOpenSearch: () => void;
+  onOpenCan: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -18,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   soundEnabled,
   setSoundEnabled,
   onOpenSearch,
+  onOpenCan,
 }) => {
   const toggleSound = () => {
     const newState = sounds.toggleSound();
@@ -108,9 +110,22 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Right Desktop Tools */}
+        {/* Right Controls: Quick Can Opener, Quick Search, Fullscreen & Sound */}
         <div className="flex items-center gap-2">
-          {/* Quick Search Button (Ctrl+K) */}
+          {/* Quick Can Opener Button */}
+          <button
+            onClick={() => {
+              sounds.playPop();
+              onOpenCan();
+            }}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs font-bold shadow-md shadow-rose-600/25 active:scale-95 transition-all group"
+            title="Открыть баночку Кока-Коли со звуком и эффектами"
+          >
+            <span className="text-base group-hover:scale-125 transition-transform">🥤</span>
+            <span className="hidden sm:inline">Открыть Колу</span>
+          </button>
+
+          {/* Search Trigger */}
           <button
             onClick={() => {
               sounds.playPop();

@@ -24,6 +24,14 @@ export const Soundboard: React.FC = () => {
 
   const soundList: SoundItem[] = [
     {
+      id: 'canOpen',
+      name: 'Щелчок и пшик банки',
+      desc: 'Реалистичный хруст ключа и мощный выход углекислого газа',
+      icon: '💥',
+      color: 'from-rose-600 to-red-700',
+      action: () => sounds.playCanOpen(),
+    },
+    {
       id: 'fizz',
       name: 'Пшик Кока-Коли',
       desc: 'Открытие ледяной баночки с Николаем',

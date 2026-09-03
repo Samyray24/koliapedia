@@ -59,6 +59,78 @@ class SoundEngine {
     whiteNoise.start();
   }
 
+  // Реалистичное открывание жестяной баночки (щелчок ключа + мощный пшик газа + шипение)
+  public playCanOpen() {
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    const t = ctx.currentTime;
+
+    // 1. Металлический щелчок ключа (Crack / Snap)
+    const snapOsc = ctx.createOscillator();
+    const snapGain = ctx.createGain();
+    snapOsc.type = 'sawtooth';
+    snapOsc.frequency.setValueAtTime(1400, t);
+    snapOsc.frequency.exponentialRampToValueAtTime(180, t + 0.06);
+
+    snapGain.gain.setValueAtTime(0.4, t);
+    snapGain.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
+
+    snapOsc.connect(snapGain);
+    snapGain.connect(ctx.destination);
+    snapOsc.start(t);
+    snapOsc.stop(t + 0.08);
+
+    // 2. Мощный выход газа под давлением (Pshhh)
+    const noiseDuration = 0.9;
+    const bufferSize = Math.floor(ctx.sampleRate * noiseDuration);
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const output = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+
+    const gasNoise = ctx.createBufferSource();
+    gasNoise.buffer = buffer;
+
+    const gasFilter = ctx.createBiquadFilter();
+    gasFilter.type = 'bandpass';
+    gasFilter.Q.setValueAtTime(3.5, t);
+    gasFilter.frequency.setValueAtTime(4500, t);
+    gasFilter.frequency.exponentialRampToValueAtTime(1600, t + 0.5);
+
+    const gasGain = ctx.createGain();
+    gasGain.gain.setValueAtTime(0.001, t);
+    gasGain.gain.linearRampToValueAtTime(0.48, t + 0.02); // резкий взрывной фронт
+    gasGain.gain.exponentialRampToValueAtTime(0.12, t + 0.3);
+    gasGain.gain.exponentialRampToValueAtTime(0.001, t + noiseDuration);
+
+    gasNoise.connect(gasFilter);
+    gasFilter.connect(gasGain);
+    gasGain.connect(ctx.destination);
+
+    gasNoise.start(t + 0.01);
+
+    // 3. Последующее шипение вырывающихся пузырьков (Bubbles Fizz)
+    const fizzNoise = ctx.createBufferSource();
+    fizzNoise.buffer = buffer;
+
+    const fizzFilter = ctx.createBiquadFilter();
+    fizzFilter.type = 'highpass';
+    fizzFilter.frequency.setValueAtTime(5500, t);
+
+    const fizzGain = ctx.createGain();
+    fizzGain.gain.setValueAtTime(0.001, t + 0.1);
+    fizzGain.gain.linearRampToValueAtTime(0.2, t + 0.25);
+    fizzGain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
+
+    fizzNoise.connect(fizzFilter);
+    fizzFilter.connect(fizzGain);
+    fizzGain.connect(ctx.destination);
+
+    fizzNoise.start(t + 0.1);
+  }
+
   // Звук клика / Pop
   public playPop() {
     const ctx = this.getContext();

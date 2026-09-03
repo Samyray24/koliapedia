@@ -12,6 +12,7 @@ import { CardModal } from './components/CardModal';
 import { BackgroundEffects } from './components/BackgroundEffects';
 import { DesktopTicker } from './components/DesktopTicker';
 import { QuickSearchModal } from './components/QuickSearchModal';
+import { CanOpenerModal } from './components/CanOpenerModal';
 import type { KolyaEntry } from './data/koliapediaData';
 import { sounds } from './utils/audio';
 
@@ -20,6 +21,7 @@ export function App() {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<KolyaEntry | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isCanModalOpen, setIsCanModalOpen] = useState(false);
 
   // Favorites in localStorage
   const [favorites, setFavorites] = useState<string[]>(() => {
@@ -71,6 +73,10 @@ export function App() {
       else if (e.key === '5') { setActiveTab('kolyameter'); sounds.playPop(); }
       else if (e.key === '6') { setActiveTab('toast'); sounds.playPop(); }
       else if (e.key === '7') { setActiveTab('soundboard'); sounds.playPop(); }
+      else if (e.key === 'c' || e.key === 'C' || e.key === 'с' || e.key === 'С') {
+        sounds.playPop();
+        setIsCanModalOpen(true);
+      }
       else if (e.key === 'm' || e.key === 'M' || e.key === 'ь' || e.key === 'Ь') {
         const newState = sounds.toggleSound();
         setSoundEnabled(newState);
@@ -83,19 +89,9 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-rose-500 selection:text-white relative">
-      {/* Background Interactive Ambient Effects (PC Soda Bubbles & Cursor Glow) */}
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-rose-500 selection:text-white relative overflow-x-hidden">
+      {/* Background Interactive Soda Bubbles & Mouse Glow */}
       <BackgroundEffects />
-
-      {/* Background glowing gradients */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-0 left-1/4 w-[550px] h-[550px] bg-purple-600/10 rounded-full blur-[140px]" />
-        <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-cyan-600/10 rounded-full blur-[140px]" />
-        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-rose-600/10 rounded-full blur-[140px]" />
-      </div>
-
-      {/* Running Live News Ticker for Desktop */}
-      <DesktopTicker />
 
       {/* Top Navbar */}
       <Navbar
@@ -104,10 +100,14 @@ export function App() {
         soundEnabled={soundEnabled}
         setSoundEnabled={setSoundEnabled}
         onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenCan={() => setIsCanModalOpen(true)}
       />
 
+      {/* Desktop Marquee Ticker */}
+      <DesktopTicker />
+
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 pt-6 relative z-10">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 pt-4 md:pt-6 relative z-10">
         {activeTab === 'encyclopedia' && (
           <Encyclopedia
             favorites={favorites}
@@ -133,6 +133,12 @@ export function App() {
 
         {activeTab === 'soundboard' && <Soundboard />}
       </main>
+
+      {/* Interactive Can Opener Modal */}
+      <CanOpenerModal
+        isOpen={isCanModalOpen}
+        onClose={() => setIsCanModalOpen(false)}
+      />
 
       {/* Quick Search Modal (Ctrl+K) */}
       <QuickSearchModal
