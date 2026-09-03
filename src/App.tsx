@@ -12,7 +12,7 @@ import { CardModal } from './components/CardModal';
 import { BackgroundEffects } from './components/BackgroundEffects';
 import { DesktopTicker } from './components/DesktopTicker';
 import { QuickSearchModal } from './components/QuickSearchModal';
-import { CanOpenerModal } from './components/CanOpenerModal';
+import { Can3DViewer } from './components/Can3DViewer';
 import type { KolyaEntry } from './data/koliapediaData';
 import { sounds } from './utils/audio';
 
@@ -134,8 +134,8 @@ export function App() {
         {activeTab === 'soundboard' && <Soundboard />}
       </main>
 
-      {/* Interactive Can Opener Modal */}
-      <CanOpenerModal
+      {/* Interactive 3D WebGL Can Viewer */}
+      <Can3DViewer
         isOpen={isCanModalOpen}
         onClose={() => setIsCanModalOpen(false)}
       />
