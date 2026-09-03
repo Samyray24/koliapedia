@@ -7,16 +7,18 @@ using System.Windows.Forms;
 
 namespace KoliapediaApp {
     static class Program {
+        private const int PORT = 7777;
+
         [STAThread]
         static void Main() {
             try {
                 string appDir = AppDomain.CurrentDomain.BaseDirectory;
 
-                // 1. Check if server on port 5173 is already running
+                // 1. Проверяем, запущен ли выделенный порт Коляпедии (7777)
                 bool isPortOpen = false;
                 try {
                     using (var client = new TcpClient()) {
-                        var result = client.BeginConnect("127.0.0.1", 5173, null, null);
+                        var result = client.BeginConnect("127.0.0.1", PORT, null, null);
                         isPortOpen = result.AsyncWaitHandle.WaitOne(300);
                         if (isPortOpen && client.Connected) {
                             client.EndConnect(result);
@@ -26,7 +28,7 @@ namespace KoliapediaApp {
                     isPortOpen = false;
                 }
 
-                // If not running, start server in background without console window
+                // Если сервер Коляпедии ещё не запущен, поднимаем его на порту 7777 в фоне
                 if (!isPortOpen) {
                     var startInfo = new ProcessStartInfo {
                         FileName = "cmd.exe",
@@ -37,10 +39,10 @@ namespace KoliapediaApp {
                         WindowStyle = ProcessWindowStyle.Hidden
                     };
                     Process.Start(startInfo);
-                    Thread.Sleep(1200);
+                    Thread.Sleep(1500);
                 }
 
-                // 2. Locate Edge or Chrome for dedicated standalone window mode
+                // 2. Ищем Microsoft Edge или Google Chrome для режима нативного окна (App Mode)
                 string edgePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"Microsoft\Edge\Application\msedge.exe");
                 if (!File.Exists(edgePath)) {
                     edgePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Microsoft\Edge\Application\msedge.exe");
@@ -52,17 +54,17 @@ namespace KoliapediaApp {
                 }
 
                 string browser = File.Exists(edgePath) ? edgePath : (File.Exists(chromePath) ? chromePath : null);
-                string dataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "KoliapediaApp");
+                string dataDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "KoliapediaApp7777");
 
                 if (browser != null) {
                     var procInfo = new ProcessStartInfo {
                         FileName = browser,
-                        Arguments = "--app=http://localhost:5173 --window-size=1260,860 --user-data-dir=\"" + dataDir + "\"",
+                        Arguments = "--app=http://localhost:" + PORT + " --window-size=1260,860 --user-data-dir=\"" + dataDir + "\"",
                         UseShellExecute = true
                     };
                     Process.Start(procInfo);
                 } else {
-                    Process.Start(new ProcessStartInfo("http://localhost:5173") { UseShellExecute = true });
+                    Process.Start(new ProcessStartInfo("http://localhost:" + PORT) { UseShellExecute = true });
                 }
             } catch (Exception ex) {
                 MessageBox.Show("Ошибка при запуске Коляпедии: " + ex.Message, "Коляпедия", MessageBoxButtons.OK, MessageBoxIcon.Error);

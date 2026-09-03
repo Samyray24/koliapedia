@@ -6,6 +6,6 @@ echo   Запуск шуточного приложения «Коляпедия
 echo ===================================================
 echo.
 timeout /t 2 > nul
-start http://localhost:5173
+start http://localhost:7777
 npm run dev
 pause
