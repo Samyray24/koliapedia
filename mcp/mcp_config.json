@@ -2,47 +2,156 @@
   "mcpServers": {
     "fetch": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-fetch"
-      ],
-      "description": "Инструмент для загрузки веб-страниц, документации и REST API"
+      "args": ["-y", "@modelcontextprotocol/server-fetch"],
+      "description": "Загрузка веб-страниц, документации библиотек и открытых API"
     },
     "puppeteer": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-puppeteer"
-      ],
-      "description": "Безголовый браузер Chromium для автоматизации, скриншотов и E2E тестов"
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "description": "Браузерная автоматизация Chromium, скриншоты вёрстки и E2E тесты"
     },
     "github": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ],
+      "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-      ],
+      },
       "description": "Интеграция с GitHub API: коммиты, PR, релизы, issue, поиск по коду"
     },
     "filesystem": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "./"
-      ],
-      "description": "Безопасный доступ к файлам проекта и каталогам"
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"],
+      "description": "Безопасные файловые операции внутри рабочего каталога"
     },
     "sqlite": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sqlite"
-      ],
-      "description": "Интроспекция и выполнение SQL-запросов к базам данных SQLite"
+      "args": ["-y", "@modelcontextprotocol/server-sqlite"],
+      "description": "Интроспекция и выполнение SQL-запросов к SQLite"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost:5432/app"],
+      "description": "Клиент базы данных PostgreSQL для анализа схем и выполнения запросов"
+    },
+    "mysql": {
+      "command": "npx",
+      "args": ["-y", "mysql-mcp-server"],
+      "description": "Клиент баз данных MySQL и MariaDB"
+    },
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-redis"],
+      "description": "Инспекция in-memory кэша Redis, проверка TTL и очередей"
+    },
+    "docker": {
+      "command": "npx",
+      "args": ["-y", "docker-mcp-server"],
+      "description": "Управление контейнерами Docker, чтение логов и проверка статусов"
+    },
+    "kubernetes": {
+      "command": "npx",
+      "args": ["-y", "kubernetes-mcp-server"],
+      "description": "Инспекция K8s кластеров, Pods, Services, Deployments"
+    },
+    "git": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-git"],
+      "description": "Локальные Git операции: diff, история коммитов, слияния веток"
+    },
+    "terminal": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-terminal"],
+      "description": "Выполнение команд терминала и скриптов автоматизации"
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "description": "Отправка сообщений, алертов и уведомлений в каналы Slack"
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "description": "Глобальный поиск актуальной информации и документации в интернете"
+    },
+    "google-maps": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-maps"],
+      "description": "Геокодирование, расчёт маршрутов и поиск мест"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Графовая память долгосрочного контекста и сущностей для ИИ-агента"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "description": "Пошаговое глубокое рассуждение и верификация сложных задач"
+    },
+    "everything": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-everything"],
+      "description": "Эталонный тестовый MCP-сервер для валидации протокола"
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+      "description": "Интеграция с GitLab: Merge Requests, CI пайплайны, репозитории"
+    },
+    "aws": {
+      "command": "npx",
+      "args": ["-y", "aws-mcp-server"],
+      "description": "Инспекция облачной инфраструктуры AWS: S3, CloudWatch, Lambda"
+    },
+    "cloudflare": {
+      "command": "npx",
+      "args": ["-y", "cloudflare-mcp-server"],
+      "description": "Управление Cloudflare Workers, DNS записями и KV-хранилищами"
+    },
+    "jira": {
+      "command": "npx",
+      "args": ["-y", "jira-mcp-server"],
+      "description": "Трекинг задач, спринтов и багов в Atlassian Jira"
+    },
+    "confluence": {
+      "command": "npx",
+      "args": ["-y", "confluence-mcp-server"],
+      "description": "Поиск и обновление проектной документации в Confluence"
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "notion-mcp-server"],
+      "description": "Чтение и редактирование страниц и баз данных в Notion"
+    },
+    "elasticsearch": {
+      "command": "npx",
+      "args": ["-y", "elasticsearch-mcp-server"],
+      "description": "Поиск по индексам и выполнение запросов в Elasticsearch"
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "sentry-mcp-server"],
+      "description": "Мониторинг ошибок продакшена, стек-трейсов и релизов в Sentry"
+    },
+    "npm": {
+      "command": "npx",
+      "args": ["-y", "npm-mcp-server"],
+      "description": "Инспекция пакетов в реестре npm, поиск версий и аудит безопасности"
+    },
+    "weather": {
+      "command": "npx",
+      "args": ["-y", "weather-mcp-server"],
+      "description": "Получение метеорологических данных и прогноза погоды"
+    },
+    "openapi": {
+      "command": "npx",
+      "args": ["-y", "openapi-mcp-server"],
+      "description": "Динамическая генерация инструментов ИИ из спецификаций Swagger/OpenAPI"
+    },
+    "time": {
+      "command": "npx",
+      "args": ["-y", "time-mcp-server"],
+      "description": "Расчёт часовых поясов, временных меток и мирового времени"
     }
   }
 }

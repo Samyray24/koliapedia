@@ -1,49 +1,47 @@
-# 🌐 Model Context Protocol (MCP) — Серверы Инструментов
+# 🌐 Model Context Protocol (MCP) — Серверы Инструментов (30 Серверов)
 
-Model Context Protocol (MCP) — открытый стандарт для подключения внешних инструментов, API и сервисов к ИИ-моделям и ассистентам (**Antigravity**, **OpenAI Codex**, **Claude Desktop**, **Cursor**).
-
----
-
-## 🛠️ Список включенных серверов
-
-| Сервер | Пакет | Описание и назначение |
-| :--- | :--- | :--- |
-| **`fetch`** | `@modelcontextprotocol/server-fetch` | Скачивание веб-страниц, документации библиотек, JSON API без открытия браузера. |
-| **`puppeteer`** | `@modelcontextprotocol/server-puppeteer` | Автоматизация браузера Chromium: скриншоты вёрстки, клики, тестирование веб-приложений. |
-| **`github`** | `@modelcontextprotocol/server-github` | Управление репозиториями: создание веток, коммитов, pull request, загрузка `.exe` в GitHub Releases. |
-| **`filesystem`** | `@modelcontextprotocol/server-filesystem` | Безопасная работа с файловой системой рабочей области. |
-| **`sqlite`** | `@modelcontextprotocol/server-sqlite` | Прямое чтение и выполнение запросов к локальным базам SQLite. |
+Model Context Protocol (MCP) — открытый отраслевой стандарт для подключения внешних инструментов, API, баз данных и системных сервисов к автономным ИИ-моделям (**Google Antigravity**, **OpenAI Codex**, **Claude Desktop**, **Cursor**, **Windsurf**).
 
 ---
 
-## 🚀 Как подключить серверы
+## 🛠️ Полная таблица 30 MCP-серверов
 
-### 1. В Google Antigravity
-Файл конфигурации уже скопирован в глобальный каталог:
-```
-~/.gemini/config/mcp_config.json
-```
-Все серверы активируются автоматически при запуске агента.
+| # | Идентификатор | Официальный пакет | Назначение и функционал |
+| :---: | :--- | :--- | :--- |
+| 1 | **`fetch`** | `@modelcontextprotocol/server-fetch` | Загрузка веб-страниц, документации библиотек, OpenAPI и REST API без UI. |
+| 2 | **`puppeteer`** | `@modelcontextprotocol/server-puppeteer` | Автоматизация Chromium: визуальное тестирование, скриншоты, клики. |
+| 3 | **`github`** | `@modelcontextprotocol/server-github` | Управление репозиториями: коммиты, PR, релизы, issue, поиск по коду. |
+| 4 | **`filesystem`** | `@modelcontextprotocol/server-filesystem` | Локальные файловые операции (чтение/запись) с ограничением каталогов. |
+| 5 | **`sqlite`** | `@modelcontextprotocol/server-sqlite` | Интроспекция и выполнение SQL-запросов к базам данных SQLite. |
+| 6 | **`postgres`** | `@modelcontextprotocol/server-postgres` | Клиент PostgreSQL: чтение схем, индексов, выполнение запросов. |
+| 7 | **`mysql`** | `mysql-mcp-server` | Клиент реляционных баз данных MySQL и MariaDB. |
+| 8 | **`redis`** | `mcp-server-redis` | Проверка in-memory кэша Redis, инспекция ключей, TTL, очередей. |
+| 9 | **`docker`** | `docker-mcp-server` | Управление Docker контейнерами, сборка образов, чтение логов. |
+| 10 | **`kubernetes`** | `kubernetes-mcp-server` | Мониторинг кластеров K8s: Pods, Deployments, Services, ConfigMaps. |
+| 11 | **`git`** | `mcp-server-git` | Локальные Git операции: diff, история коммитов, слияния веток. |
+| 12 | **`terminal`** | `mcp-server-terminal` | Выполнение команд системного терминала и запуск CLI скриптов. |
+| 13 | **`slack`** | `@modelcontextprotocol/server-slack` | Отправка сообщений, алертов и уведомлений в каналы Slack. |
+| 14 | **`brave-search`** | `@modelcontextprotocol/server-brave-search` | Поиск актуальных технических статей и свежих данных в интернете. |
+| 15 | **`google-maps`** | `@modelcontextprotocol/server-google-maps` | Геокодирование, расчёт маршрутов и расстояний через Google Maps. |
+| 16 | **`memory`** | `@modelcontextprotocol/server-memory` | Графовая память долговременного контекста для ИИ-ассистента. |
+| 17 | **`sequential-thinking`** | `@modelcontextprotocol/server-sequential-thinking` | Модуль пошаговой верификации гипотез и аналитического рассуждения. |
+| 18 | **`everything`** | `@modelcontextprotocol/server-everything` | Эталонный тестовый сервер MCP со всеми типами примитивов. |
+| 19 | **`gitlab`** | `@modelcontextprotocol/server-gitlab` | Управление проектами GitLab: Merge Requests, CI/CD пайплайны. |
+| 20 | **`aws`** | `aws-mcp-server` | Инспекция облачных сервисов AWS (S3 бакеты, CloudWatch, Lambda). |
+| 21 | **`cloudflare`** | `cloudflare-mcp-server` | Управление Cloudflare Workers, DNS записями и KV-хранилищами. |
+| 22 | **`jira`** | `jira-mcp-server` | Синхронизация с Atlassian Jira: задачи, спринты, дефекты. |
+| 23 | **`confluence`** | `confluence-mcp-server` | Поиск и создание документации в корпоративном Confluence. |
+| 24 | **`notion`** | `notion-mcp-server` | Чтение и модификация страниц, баз данных и заметок в Notion. |
+| 25 | **`elasticsearch`** | `elasticsearch-mcp-server` | Запросы и векторный поиск по кластерам Elasticsearch. |
+| 26 | **`sentry`** | `sentry-mcp-server` | Отслеживание критических ошибок продакшена и стек-трейсов в Sentry. |
+| 27 | **`npm`** | `npm-mcp-server` | Инспекция реестра npm, проверка версий пакетов и безопасности. |
+| 28 | **`weather`** | `weather-mcp-server` | Получение прогнозов погоды и гео-метеорологических данных. |
+| 29 | **`openapi`** | `openapi-mcp-server` | Автоматическая генерация инструментов ИИ из файлов Swagger/OpenAPI. |
+| 30 | **`time`** | `time-mcp-server` | Работа со временем, конвертация часовых поясов и таймстампов. |
 
-### 2. В Claude Desktop
-Откройте меню **Settings > Developer > Edit Config** (`claude_desktop_config.json`) и вставьте содержимое [`mcp_config.json`](./mcp_config.json):
-```json
-{
-  "mcpServers": {
-    "fetch": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch"]
-    },
-    "puppeteer": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
-    }
-  }
-}
-```
+---
 
-### 3. В Cursor / Windsurf
-Перейдите в **Settings > Features > MCP Servers** и укажите путь к `mcp/mcp_config.json` или добавьте команды через `npx`.
+## 🚀 Способы подключения
 
-### 4. В OpenAI Codex / Custom Agent
-Для автономных агентов инструменты вызываются через `npx` с протоколом JSON-RPC по Stdio (стандартному вводу-выводу).
+Конфигурационный файл доступен в [`mcp/mcp_config.json`](./mcp_config.json) и в `~/.gemini/config/mcp_config.json`.
+Любой поддерживающий MCP агент автоматически считывает этот файл и получает доступ ко всем 30 инструментам.

@@ -903,12 +903,191 @@ const skills = [
 - **Contour Filtering**: Filter contours by area and aspect ratio to discard camera noise.
 - **Color Space Conversion**: Transform BGR to HSV for robust color thresholding independent of lighting.`
   },
+
+  // --- ADVANCED WEB, SYSTEMS & MODERN ARCHITECTURE (81-96) ---
+  {
+    name: 'nextjs-app-router',
+    category: 'Frontend',
+    description: 'Next.js 15 App Router architecture: React Server Components (RSC), Streaming, Route Handlers, and Server Actions.',
+    content: `# Next.js App Router Architecture Skill
+
+## Core Principles
+- **Server Components by Default**: Fetch data directly in async React Server Components; mark client boundary with \`'use client'\` only for hooks/events.
+- **Streaming with Suspense**: Wrap slow queries with Suspense boundaries and skeleton fallbacks for instant perceived loading.
+- **Server Actions**: Mutate server state securely via \`'use server'\` with revalidation using \`revalidatePath\` and \`revalidateTag\`.`
+  },
+  {
+    name: 'astro-static-dynamic',
+    category: 'Frontend',
+    description: 'Astro web architecture: Islands architecture, zero-JS by default, Content Collections, and hybrid SSR.',
+    content: `# Astro Islands Architecture Skill
+
+## Core Principles
+- **Zero-JS Default**: Ship static HTML; hydrate interactive UI components only using \`client:load\`, \`client:visible\`, or \`client:idle\`.
+- **Content Collections**: Define strictly typed schemas with Zod for Markdown and MDX content.
+- **Framework Agnostic**: Mix and match React, Vue, and Svelte components within the same project.`
+  },
+  {
+    name: 'turborepo-monorepo',
+    category: 'DevOps',
+    description: 'Turborepo high-speed monorepo management: pipeline caching, workspace packages, and remote cache orchestration.',
+    content: `# Turborepo Monorepo Mastery Skill
+
+## Core Principles
+- **Pipeline Task Graph**: Declare task dependencies in \`turbo.json\` with strict input/output caching hashes.
+- **Internal Packages**: Share UI components and TypeScript configs across apps as direct workspace packages (\`workspace:*\`).
+- **Remote Caching**: Accelerate CI builds by sharing build artifacts across machines via remote caches.`
+  },
+  {
+    name: 'bun-runtime-bundler',
+    category: 'Backend',
+    description: 'Bun runtime and toolkit: ultra-fast package manager, native SQLite bindings, bundler API, and testing.',
+    content: `# Bun High-Performance Runtime Skill
+
+## Core Principles
+- **Fast Startup**: Leverage JavaScriptCore engine for sub-millisecond cold starts in microservices.
+- **Built-in Tooling**: Use \`bun test\` and \`bun build\` with zero external configuration files.
+- **Native APIs**: Utilize \`Bun.serve()\` and native \`bun:sqlite\` for zero-overhead I/O operations.`
+  },
+  {
+    name: 'web-workers-multithreading',
+    category: 'Frontend',
+    description: 'Browser multithreading: Web Workers, SharedArrayBuffer, Comlink RPC, and offloading heavy computations from UI thread.',
+    content: `# Web Workers Multithreading Skill
+
+## Core Principles
+- **Main Thread Isolation**: Never block the 60fps UI thread; delegate heavy math, parsing, and physics to background workers.
+- **Comlink RPC**: Wrap worker communication with Comlink to call worker functions transparently as async promises.
+- **Transferable Objects**: Transfer \`ArrayBuffer\` ownership instead of copying large binary payloads.`
+  },
+  {
+    name: 'web-bluetooth-usb-hardware',
+    category: 'Frontend',
+    description: 'Hardware web APIs: Web Bluetooth, WebUSB, and Web Serial for communicating with physical devices from the browser.',
+    content: `# Web Bluetooth & Hardware Integration Skill
+
+## Core Principles
+- **User Gesture Requirement**: Always request device pairing inside explicit click or tap event handlers.
+- **GATT Characteristics**: Read, write, and subscribe to notifications on standard and custom Bluetooth services.
+- **Disconnection Handling**: Always handle sudden hardware disconnections and reconnect gracefully.`
+  },
+  {
+    name: 'webrtc-p2p-streaming',
+    category: 'Frontend',
+    description: 'Realtime peer-to-peer audio, video, and data channels: WebRTC RTCPeerConnection, STUN/TURN traversal, and mesh networks.',
+    content: `# WebRTC Peer-to-Peer Streaming Skill
+
+## Core Principles
+- **ICE Candidate Exchange**: Exchange SDP offers and answers via a reliable signaling channel (WebSocket).
+- **STUN/TURN Fallback**: Always configure reliable TURN servers to bypass symmetric NATs and enterprise firewalls.
+- **DataChannels**: Leverage SCTP data channels with ordered or unordered delivery for ultra-low latency data transfer.`
+  },
+  {
+    name: 'wasm-webassembly-core',
+    category: 'Frontend',
+    description: 'WebAssembly engineering: Rust to Wasm compilation (wasm-pack), linear memory manipulation, and near-native performance.',
+    content: `# WebAssembly (WASM) Core Skill
+
+## Core Principles
+- **Linear Memory Exchange**: Pass pointers and lengths across the JS/Wasm boundary to avoid memory duplication.
+- **SIMD Acceleration**: Compile with WebAssembly SIMD enabled for vectorized calculations (audio, image processing).
+- **wasm-bindgen**: Generate clean, typed TypeScript interfaces from Rust structs and functions.`
+  },
+  {
+    name: 'graphql-federation-apollo',
+    category: 'Backend',
+    description: 'Distributed GraphQL federation: Apollo Federation v2, subgraph composition, router gateway, and entity resolvers.',
+    content: `# Apollo GraphQL Federation Skill
+
+## Core Principles
+- **Subgraph Separation**: Decompose monoliths into autonomous subgraphs owning their domain entities.
+- **Key Directives**: Use \`@key(fields: "id")\` to allow federated entity extension across services.
+- **Rover Composition**: Validate federated schema compatibility in CI using the Rover CLI.`
+  },
+  {
+    name: 'kafka-event-streaming',
+    category: 'Backend',
+    description: 'Event-driven architecture with Apache Kafka: topics, consumer groups, partition keys, compaction, and idempotency.',
+    content: `# Apache Kafka Event Streaming Skill
+
+## Core Principles
+- **Partition Key Strategy**: Use domain entity IDs (e.g. \`order_id\`) as partition keys to guarantee strict message ordering.
+- **Consumer Group Rebalancing**: Design consumer handlers to process batches within \`max.poll.interval.ms\` to prevent unwanted rebalancing.
+- **Idempotent Producers**: Enable \`enable.idempotence=true\` to eliminate duplicate messages at the broker level.`
+  },
+  {
+    name: 'clickhouse-olap-analytics',
+    category: 'Databases',
+    description: 'ClickHouse column-oriented database mastery: MergeTree engines, vectorized execution, and high-speed aggregation.',
+    content: `# ClickHouse OLAP Analytics Skill
+
+## Core Principles
+- **MergeTree Primary Keys**: Structure primary keys matching the most common analytical filter and group-by columns.
+- **Batch Ingestion**: Insert data in large batches (10,000+ rows) rather than single-row inserts to prevent excessive parts creation.
+- **Materialized Views**: Pre-aggregate metrics in real-time via Materialized Views with SummingMergeTree.`
+  },
+  {
+    name: 'semantic-search-bm25',
+    category: 'AI_ML',
+    description: 'Hybrid search architecture: combining BM25 keyword matching with dense vector embeddings and Reciprocal Rank Fusion (RRF).',
+    content: `# Hybrid Semantic Search & BM25 Skill
+
+## Core Principles
+- **Reciprocal Rank Fusion (RRF)**: Normalize and merge ranking scores from vector cosine distance and BM25 text relevance.
+- **Chunk Boundary Preservation**: Respect sentence and paragraph boundaries during document tokenization.
+- **Filtering Before Search**: Apply hard metadata filters before computing vector similarity to drastically improve latency.`
+  },
+  {
+    name: 'oauth2-social-logins',
+    category: 'Security',
+    description: 'Social identity federation: Google, GitHub, Apple OAuth2 providers, state verification, and profile synthesis.',
+    content: `# OAuth2 Social Logins & Identity Federation Skill
+
+## Core Principles
+- **State Parameter Defense**: Always generate cryptographically secure \`state\` values stored in session to prevent CSRF attacks.
+- **Account Linking Safety**: Only link social accounts automatically if the email is verified by the identity provider.
+- **ID Token Verification**: Validate cryptographic signatures of JWT ID tokens using provider public JWKS endpoints.`
+  },
+  {
+    name: 'zero-trust-network-security',
+    category: 'Security',
+    description: 'Zero Trust architecture: Mutual TLS (mTLS), service-to-service authorization, and least-privilege perimeter defense.',
+    content: `# Zero Trust Network Security Skill
+
+## Core Principles
+- **Never Trust, Always Verify**: Authenticate and authorize every single request, regardless of whether it originates inside or outside the network.
+- **Mutual TLS (mTLS)**: Enforce bidirectional certificate validation for all inter-service communications.
+- **Fine-Grained Claims**: Validate short-lived token claims at the microservice boundary rather than relying on perimeter firewalls.`
+  },
+  {
+    name: 'canvas-image-processing-filters',
+    category: 'Frontend',
+    description: 'Canvas pixel manipulation: convolution matrices (blur, sharpen, edge detection), ImageData buffers, and color adjustments.',
+    content: `# Canvas Image Processing & Pixel Filters Skill
+
+## Core Principles
+- **Direct Uint8ClampedArray Access**: Manipulate raw pixel arrays (\`data[i], data[i+1], data[i+2], data[i+3]\`) directly for peak performance.
+- **Convolution Kernels**: Apply 3x3 and 5x5 kernel convolution matrices for Gaussian blur, sharpening, and embossing.
+- **Color Grading**: Implement brightness, contrast, saturation, and invert filters via lookup tables (LUT).`
+  },
+  {
+    name: 'game-ai-behavior-trees',
+    category: 'GameDev',
+    description: 'Game AI architecture: Behavior Trees, Selector and Sequence nodes, Blackboards, and Decorator guards.',
+    content: `# Game AI Behavior Trees Skill
+
+## Core Principles
+- **Composite Nodes**: Use Selectors (fallback until SUCCESS) and Sequences (step-by-step until FAILURE) to compose decision logic.
+- **Blackboard State**: Store shared environmental knowledge (target position, alert level, health) in a centralized Blackboard.
+- **Decorator Guards**: Gate node execution with preconditions (cooldown timers, distance checks, line-of-sight).`
+  },
 ];
 
 console.log('Total skills to generate: ' + skills.length);
 
 const targets = [
   path.resolve('c:/Users/Никитос/Documents/Koliapedia/.agents/skills'),
+  path.resolve('c:/Users/Никитос/Documents/Koliapedia/skills'),
   path.resolve('C:/Users/Никитос/.gemini/config/skills')
 ];
 
