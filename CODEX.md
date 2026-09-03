@@ -31,14 +31,14 @@
 ---
 
 ## 🌐 2. Серверы Инструментов MCP (`mcp/` — 30 серверов)
-Конфигурация серверов Model Context Protocol находится в файле [`mcp/mcp_config.json`](./mcp/mcp_config.json):
+Конфигурация серверов Model Context Protocol находится в файле [`mcp/mcp_servers.json`](./mcp/mcp_servers.json):
 * `fetch`, `puppeteer`, `github`, `filesystem`, `sqlite`, `postgres`, `mysql`, `redis`, `docker`, `kubernetes`, `git`, `terminal`, `slack`, `brave-search`, `google-maps`, `memory`, `sequential-thinking`, `everything`, `gitlab`, `aws`, `cloudflare`, `jira`, `confluence`, `notion`, `elasticsearch`, `sentry`, `npm`, `weather`, `openapi`, `time`.
 * Подробное описание каждого сервера: [`mcp/README.md`](./mcp/README.md).
 
 ---
 
 ## 🛠️ 3. Основные команды проекта
-* `npm run dev` — запуск локального веб-сервера (Vite) на порту `5173`.
+* `npm run dev` — запуск локального веб-сервера (Vite) на порту `7777`.
 * `npm run build` — проверка типов TypeScript (`tsc -b`) и компиляция продакшн-бандла.
 * `npm run lint` — моментальный статический анализ через `oxlint` (требуется **0 warnings, 0 errors**).
 * `.\Коляпедия.exe` — запуск нативного оконного приложения Windows.
